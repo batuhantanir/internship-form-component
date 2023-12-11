@@ -9,7 +9,12 @@ module.exports = {
     extend: {
       colors: {
         primary: "#0891B2",
+        primaryDark: "#0e7490",
         danger: "#E02424",
+        svgColorLight: "#F9FAFB",
+        svgColor: "#9CA3AF",
+        svgColorDark: "#6B7280",
+        hoverBgColor: "#F3F4F6",
       },
     },
   },

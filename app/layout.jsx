@@ -11,7 +11,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} grid grid-cols-12 grid-rows-6`}>
+        <div className='h-16 col-span-12 bg-red-400'>Header</div>
+        <div className='col-span-12 row-span-full row-start-2 lg:col-start-3 lg:col-span-10'>{children}</div>
+        <div className='hidden row-start-2 row-span-6 col-span-2 bg-slate-600  lg:block'>Sidebar</div>
+        </body>
     </html>
   )
 }
