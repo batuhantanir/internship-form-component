@@ -1,7 +1,7 @@
 import React from "react";
 import UserRow from "./userRow";
 
-function CostumeTable({ data }) {
+function CostumeTable({ data,setpageOfOpen }) {
   return (
     <div className="overflow-x-auto">
       <table className="table-fixed min-w-full px-2">
@@ -25,9 +25,9 @@ function CostumeTable({ data }) {
             <th></th>
           </tr>
         </thead>
-        <tbody className="">
+        <tbody>
           {data.map((user, idx) => (
-            <UserRow user={user} key={idx} />
+            <UserRow user={user} key={idx} setpageOfOpen={setpageOfOpen}/>
           ))}
         </tbody>
       </table>

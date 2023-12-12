@@ -3,13 +3,13 @@ import UsersListNav from "./usersListNav";
 import UsersInput from "./usersInput";
 import ButtonContainer from "./buttonContainer";
 
-function UsersListHead() {
+function UsersListHead({setpageOfOpen}) {
   return (
     <div className="px-2 py-2">
       <UsersListNav />
       <div className="flex justify-between">
         <UsersInput />
-        <ButtonContainer />
+        <ButtonContainer setpageOfOpen={setpageOfOpen}/>
       </div>
     </div>
   );

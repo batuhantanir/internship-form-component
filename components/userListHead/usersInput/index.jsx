@@ -5,10 +5,11 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { HiTrash } from "react-icons/hi";
 import { IoIosSettings } from "react-icons/io";
 import Link from "next/link";
+import IconBtn from "@/components/iconBtn";
 
 function UsersInput() {
   return (
-    <div className="hidden  gap-5 sm:flex sm:w-[500px] lg:w-[40%]">
+    <div className="hidden  gap-2 sm:flex sm:w-[500px] lg:w-[40%]">
       <div className="border-r pr-2 lg:w-3/4">
         <input
           className="bg-svgColorLight border-[1.5px] border-svgColor p-2 w-full rounded-lg  placeholder:text-sm focus:outline-primary"
@@ -17,30 +18,16 @@ function UsersInput() {
         />
       </div>
       <div className="flex gap-2 items-center">
-        <Link
-          href="#"
-          className="hover:bg-hoverBgColor p-2 rounded hover:text-black text-svgColorDark"
-        >
-          <IoIosSettings className="scale-150" />
-        </Link>
-        <Link
-          href="#"
-          className="hover:bg-hoverBgColor p-2 rounded hover:text-black text-svgColorDark"
-        >
-          <HiTrash className="scale-150" />
-        </Link>
-        <Link
-          href="#"
-          className="hover:bg-hoverBgColor p-2 rounded hover:text-black text-svgColorDark"
-        >
-          <MdError className="scale-150" />
-        </Link>
-        <Link
-          href="#"
-          className="hover:bg-hoverBgColor p-2 rounded hover:text-black text-svgColorDark"
-        >
-          <BsThreeDotsVertical className="scale-150" />
-        </Link>
+        <IconBtn
+          icon={<IoIosSettings className="scale-150" />}
+          hrefLink={"#"}
+        />
+        <IconBtn icon={<HiTrash className="scale-150" />} hrefLink={"#"} />
+        <IconBtn icon={<MdError className="scale-150" />} hrefLink={"#"} />
+        <IconBtn
+          icon={<BsThreeDotsVertical className="scale-150" />}
+          hrefLink={"#"}
+        />
       </div>
     </div>
   );

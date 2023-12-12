@@ -45,12 +45,12 @@ function UserRow({ user }) {
         <Buttons
           title={"Edit user"}
           icon={<FiEdit className="stroke-[3]" />}
-          costumeClass={"bg-primary text-white"}
+          costumeClass={"bg-primary text-white hover:bg-primaryDark"}
         />
         <Buttons
           title={"Delete user"}
           icon={<HiTrash />}
-          costumeClass={"bg-danger text-white"}
+          costumeClass={"bg-danger text-white hover:bg-dangerDark"}
         />
       </td>
     </tr>

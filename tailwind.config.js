@@ -11,6 +11,7 @@ module.exports = {
         primary: "#0891B2",
         primaryDark: "#0e7490",
         danger: "#E02424",
+        dangerDark: "#991b1b",
         svgColorLight: "#F9FAFB",
         svgColor: "#9CA3AF",
         svgColorDark: "#6B7280",
