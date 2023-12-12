@@ -8,8 +8,8 @@ import Link from "next/link";
 
 function UsersInput() {
   return (
-    <div className="flex gap-5 w-[40%]">
-      <div className="border-r pr-2 w-3/4">
+    <div className="hidden  gap-5 sm:flex sm:w-[500px] lg:w-[40%]">
+      <div className="border-r pr-2 lg:w-3/4">
         <input
           className="bg-svgColorLight border-[1.5px] border-svgColor p-2 w-full rounded-lg  placeholder:text-sm focus:outline-primary"
           type="text"

@@ -15,6 +15,8 @@ module.exports = {
         svgColor: "#9CA3AF",
         svgColorDark: "#6B7280",
         hoverBgColor: "#F3F4F6",
+        onlineGreen: "#31C48D",
+        offlineRed: "#F05252",
       },
     },
   },
