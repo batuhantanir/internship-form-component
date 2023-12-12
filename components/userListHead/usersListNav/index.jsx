@@ -10,9 +10,9 @@ function UsersListNav() {
     <div className="">
       <nav className="">
         <ol className="flex">
-          <li className="flex items-center text-center gap-2 pr-1 text-svgColorDark hover:text-black">
+          <li className="flex items-center text-center gap-2 pr-1 text-svgColorDark hover:text-black hover:cursor-pointer">
             <span>
-              <HiHome/>
+              <HiHome className="scale-125"/>
             </span>
             <Link href="#" className="text-black">Home</Link>
           </li>

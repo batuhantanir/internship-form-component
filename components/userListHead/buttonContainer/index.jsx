@@ -8,7 +8,7 @@ function ButtonContainer() {
     <div className="flex gap-3 ">
       <Buttons
         title={"Add user"}
-        icon={<AiOutlinePlus />}
+        icon={<AiOutlinePlus className="stroke-[50]"/>}
         costumeClass={"bg-primary text-white hover:bg-primaryDark"}
       />
       <Buttons

@@ -11,7 +11,7 @@ function UsersInput() {
     <div className="flex gap-5 w-[40%]">
       <div className="border-r pr-2 w-3/4">
         <input
-          className="bg-svgColorLight border-[1.5px] border-svgColor p-2 w-full rounded  placeholder:text-sm focus:outline-primary"
+          className="bg-svgColorLight border-[1.5px] border-svgColor p-2 w-full rounded-lg  placeholder:text-sm focus:outline-primary"
           type="text"
           placeholder="Search for users"
         />
