@@ -7,14 +7,19 @@ import CostumeTable from "@/components/costumeTable";
 import UsersListHead from "@/components/userListHead";
 
 import data from "@/mock/userList.js";
+import AddUserForm from "@/components/addUserForm";
 
 function List() {
   const [pageOfOpen, setpageOfOpen] = useState("");
-  console.log(pageOfOpen);
   return (
-    <div className="">
-      <UsersListHead setpageOfOpen={setpageOfOpen}/>
-      <CostumeTable data={data} setpageOfOpen={setpageOfOpen}/>
+    <div>
+      <div className="">
+        <UsersListHead setpageOfOpen={setpageOfOpen} />
+        <CostumeTable data={data} setpageOfOpen={setpageOfOpen} />
+      </div>
+      <div className={`flex justify-center items-center fixed top-0 left-0 right-0 bottom-0 h-screen w-full ${pageOfOpen == "" ? "hidden" : "block"} bg-[#0000006d]`}>
+          {pageOfOpen == 'add-user' && <AddUserForm setpageOfOpen={setpageOfOpen}/>}
+      </div>
     </div>
   );
 }
