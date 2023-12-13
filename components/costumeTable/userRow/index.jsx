@@ -9,10 +9,11 @@ import { FiEdit } from "react-icons/fi";
 
 function UserRow({ user }) {
   const { id, name, email, position, country, status, imgSrc } = user;
+
   return (
     <tr className="hover:bg-hoverBgColor border">
       <td className="p-4 text-center">
-        <input type="checkbox" name={name} id={id} />
+        <input className="accent-primary scale-105 w-4 h-4" type="checkbox" name={name} id={id} />
       </td>
       <td className="flex p-4 gap-4">
         <Image

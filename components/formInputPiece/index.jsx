@@ -1,6 +1,7 @@
 import React from 'react'
 
-function FormInputPiece({ labelName, forHtml, typeName, name, id, placeholderName, handleChange, values }) {
+function FormInputPiece({data}) {
+    const { labelName, forHtml, typeName, name, id, placeholderName, handleChange, values } = data;
     return (
         <label className="flex flex-col col-span-6 sm:col-span-3" htmlFor={forHtml}>
             <span className='text-sm font-medium mb-2'>{labelName}</span>
