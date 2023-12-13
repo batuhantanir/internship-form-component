@@ -5,9 +5,9 @@ import { RxCross2 } from "react-icons/rx";
 //Input Component
 import FormInputPiece from "../formInputPiece";
 
-function CostumeForm({ headerName, formData, handleSubmit, setpageOfOpen }) {
+function CostumeForm({ headerName, formData, handleSubmit, setpageOfOpen, btnName }) {
     return (
-        <div className=" bg-white  w-full max-w-2xl px-4 h-auto rounded-lg">
+        <div className=" bg-white  w-full max-w-2xl px-4 h-auto rounded-lg mx-4">
             <div className="flex justify-between border-b px-3 py-4">
                 <h2 className="font-semibold text-xl">{headerName}</h2>
                 <button onClick={() => setpageOfOpen("")} ><RxCross2 /></button>
@@ -19,7 +19,7 @@ function CostumeForm({ headerName, formData, handleSubmit, setpageOfOpen }) {
                     ))}
                 </div>
                 <div className="border-t w-full p-5">
-                    <button className="bg-primary text-white text-sm w-fit text-center gap-2 font-medium px-5 py-3 rounded-lg whitespace-nowrap" type="submit">Add user</button>
+                    <button className="bg-primary text-white text-sm w-fit text-center gap-2 font-medium px-5 py-3 rounded-lg whitespace-nowrap" onClick={() => setpageOfOpen("")} type="submit">{btnName}</button>
                 </div>
             </form>
         </div>

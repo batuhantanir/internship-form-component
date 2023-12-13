@@ -7,7 +7,7 @@ import Buttons from "@/components/buttons";
 import { HiTrash } from "react-icons/hi";
 import { FiEdit } from "react-icons/fi";
 
-function UserRow({ user }) {
+function UserRow({ user, setpageOfOpen }) {
   const { id, name, email, position, country, status, imgSrc } = user;
 
   return (
@@ -35,9 +35,8 @@ function UserRow({ user }) {
       <td className="p-4 whitespace-nowrap ">
         <div className="flex items-center gap-3">
           <div
-            className={`w-2.5 h-2.5 rounded-full ${
-              status == "Active" ? "bg-onlineGreen" : "bg-offlineRed"
-            }`}
+            className={`w-2.5 h-2.5 rounded-full ${status == "Active" ? "bg-onlineGreen" : "bg-offlineRed"
+              }`}
           ></div>
           <span>{status}</span>
         </div>
@@ -47,6 +46,7 @@ function UserRow({ user }) {
           title={"Edit user"}
           icon={<FiEdit className="stroke-[3]" />}
           costumeClass={"bg-primary text-white hover:bg-primaryDark"}
+          onClickEvent={() => setpageOfOpen("edit-user")}
         />
         <Buttons
           title={"Delete user"}

@@ -18,9 +18,9 @@ function List() {
         <UsersListHead setpageOfOpen={setpageOfOpen} />
         <CostumeTable data={data} setpageOfOpen={setpageOfOpen} />
       </div>
-      <div className={`flex justify-center items-center fixed top-0 left-0 right-0 bottom-0 h-screen w-full ${pageOfOpen == "" ? "hidden" : "block"} bg-[#0000006d]`}>
+      <div className={`flex justify-center items-center fixed top-0 left-0 right-0 bottom-0 h-screen w-full overflow-y-scroll ${pageOfOpen == "" ? "hidden" : "block"} bg-[#0000006d]`}>
         {pageOfOpen == 'add-user' && <AddUserForm setpageOfOpen={setpageOfOpen} />}
-        {pageOfOpen == 'add-user' && <EditUserFrom setpageOfOpen={setpageOfOpen} />}
+        {pageOfOpen == 'edit-user' && <EditUserFrom setpageOfOpen={setpageOfOpen} />}
       </div>
     </div>
   );

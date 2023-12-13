@@ -11,7 +11,7 @@ const validationSchema = Yup.object({
   email: Yup.string().email().required(),
   phoneNumber: Yup.number().required(),
   depertmant: Yup.string().required(),
-  company: Yup.string().required(),
+  company: Yup.number().required(),
 })
 
 function AddUserForm({ setpageOfOpen }) {
@@ -47,11 +47,11 @@ function AddUserForm({ setpageOfOpen }) {
     labelName: "Departmant", forHtml: "depertmant", typeName: "text", name: "depertmant", id: "depertmant", placeholderName: "Development", handleChange: handleChange, values: values.depertmant
   },
   {
-    labelName: "company", forHtml: "company", typeName: "text", name: "company", id: "company", placeholderName: "123456", handleChange: handleChange, values: values.company
+    labelName: "Company", forHtml: "company", typeName: "number", name: "company", id: "company", placeholderName: "123456", handleChange: handleChange, values: values.company
   }]
 
   return (
-    <CostumeForm headerName={"Add new user"} formData={formData} handleSubmit={handleSubmit} setpageOfOpen={setpageOfOpen} />
+    <CostumeForm headerName={"Add new user"} formData={formData} handleSubmit={handleSubmit} setpageOfOpen={setpageOfOpen} btnName={"Add user"} />
   )
 }
 
