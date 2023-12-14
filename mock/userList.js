@@ -306,6 +306,14 @@ const userList = [
     position: "UI/UX Engineer",
     country: "Australia",
     status: "Offline", // active, offline
+  },{
+    id: 35,
+    name: "Aonnie Green",
+    email: "neil.sims@windster.com",
+    imgSrc: img, // img src
+    position: "UI/UX Engineer",
+    country: "Australia",
+    status: "Offline", // active, offline
   },
 ];
 

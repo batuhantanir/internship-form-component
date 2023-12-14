@@ -12,11 +12,13 @@ import EditUserFrom from "@/components/editUserForm";
 
 function List() {
   const [pageOfOpen, setpageOfOpen] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+
   return (
     <div>
       <div className="">
-        <UsersListHead setpageOfOpen={setpageOfOpen} />
-        <CostumeTable data={data} setpageOfOpen={setpageOfOpen} />
+        <UsersListHead setpageOfOpen={setpageOfOpen} searchValue={searchValue} setSearchValue={setSearchValue} />
+        <CostumeTable data={data} setpageOfOpen={setpageOfOpen} searchValue={searchValue} />
       </div>
       <div className={`flex justify-center items-center fixed top-0 left-0 right-0 bottom-0 h-screen w-full overflow-y-scroll ${pageOfOpen == "" ? "hidden" : "block"} bg-[#0000006d]`}>
         {pageOfOpen == 'add-user' && <AddUserForm setpageOfOpen={setpageOfOpen} />}
