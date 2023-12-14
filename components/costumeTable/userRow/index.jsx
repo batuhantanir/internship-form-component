@@ -7,7 +7,8 @@ import Buttons from "@/components/buttons";
 import { HiTrash } from "react-icons/hi";
 import { FiEdit } from "react-icons/fi";
 
-function UserRow({ user, setpageOfOpen, searchValue }) {
+function UserRow({ user, setpageOfOpen }) {
+  //userin içindeki verilerin tektek atanması
   const { id, name, email, position, country, status, imgSrc } = user;
 
   return (
@@ -35,6 +36,7 @@ function UserRow({ user, setpageOfOpen, searchValue }) {
         <td className="p-4 whitespace-nowrap ">
           <div className="flex items-center gap-3">
             <div
+                                                    //status active ise yeşil bir bg gösteriyor değilse kırmızı gösteriyor 
               className={`w-2.5 h-2.5 rounded-full ${status == "Active" ? "bg-onlineGreen" : "bg-offlineRed"
                 }`}
             ></div>

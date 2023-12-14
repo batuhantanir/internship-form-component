@@ -1,73 +1,18 @@
 "use client"
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosArrowBack } from "react-icons/io";
 import React, { useEffect, useState } from "react";
 import UserRow from "./userRow";
+
+//buttons
 import IconBtn from "../iconBtn";
 import Buttons from "../buttons";
+
+//icons
+import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 import { BiDownArrow } from "react-icons/bi";
 
-function nameIsEqual(i, j, data, searchValue) {
-  //while ile searchValue içinde dönüyoruz
-  while ((j < searchValue.length)) {
-    //searchValuenun j ince indeksi ile datanın i incisinin j incisini karşılaştırıyoruz
-    // eğer eşit değiller ise return false oluyor
-    if (data[i].name[j]?.toUpperCase() != searchValue[j].toUpperCase()) {
-      return false;
-    }
-    j++;
-  }
-  // eğer if e girmez ise true return ediyor
-  return true;
-}
-
-
-function filterUser(searchValue, data) {
-  // değişkenlerimizi tanımlıyoruz
-  let i, j, tempData;
-  //değişkenimize boş array atıyoruz ekleme yapmak için
-  tempData = []
-  //i yi sıfırlıyoruz ki 0 indexten başlamak için
-  i = 0;
-  //if sorgusunda searchValue değişkeninin boş olup olmadığı durumları kontrol ediyoruz
-  if (searchValue != "") {
-    //while ile datanın içinde dönüyoruz
-    while (i < data.length) {
-      j = 0;
-      //i, j, data, searchValue değişkenlerini nameIsEqual fonksiyonuna gönderiyoruz ve
-      // dönen boolean değere göre tempDataya push edip etmiyeceğimizi belirtiyoruz
-      nameIsEqual(i, j, data, searchValue) && tempData.push(data[i]);
-      i++;
-    }
-    //while bittikten sonra tutmuş olduğumuz tempDatayı return ediyoruz
-    return tempData
-  } else {
-    //searchValuenin boş olduğu durumda direkt datanın kendisini return ediyoruz.
-    return data;
-  }
-
-}
-
-function changeSortData(newData, sortName, sortIsAZ) {
-  // Sıralama yapılacak özelliğin adını küçük harfe dönüştürüyoruz
-  const lowerCaseSortName = sortName.toLowerCase();
-  // Sıralama sırasını belirleyen değişken
-  const sortOrder = sortIsAZ ? 1 : -1;
-
-  // Veri dizisini sıralama işlemi
-  newData.sort((a, b) => {
-    // Karşılaştırılacak değerleri büyük harfe çeviriyoruz, ancak önce değerin var olup olmadığını kontrol ediyoruz
-    const nameA = a[lowerCaseSortName] ? a[lowerCaseSortName].toUpperCase() : '';
-    const nameB = b[lowerCaseSortName] ? b[lowerCaseSortName].toUpperCase() : '';
-
-    // Sıralama işlemi, belirlenen sıra düzenine göre
-    return sortOrder * nameA.localeCompare(nameB);
-  });
-
-  // Sıralanmış veri dizisini döndürüyoruz
-  return newData;
-}
-
+//utils.js'den gelen fonksiyonlar
+import { filterUser, changeSortData, handleSortClick } from './utils'
 
 function CostumeTable({ data, setpageOfOpen, searchValue }) {
   const [thItemsData, setThItemsData] = useState([]);
@@ -82,24 +27,26 @@ function CostumeTable({ data, setpageOfOpen, searchValue }) {
 
   const slicenumber = 20;
 
+  // ComponentDidMount benzeri işlev, sayfa yüklendiğinde bir kez çalışır
   useEffect(() => {
+    // localStorage'dan thItemsData'yı al ve state'i güncelle
     setThItemsData(JSON.parse(localStorage.getItem("thItems")))
+    // newData state'ini, gelen data prop'una eşitle
     setNewData(data);
   }, [])
 
+  // searchValue veya data değiştiğinde çalışan useEffect
   useEffect(() => {
+    // filterUser fonksiyonu ile data'yı filtrele ve newData state'ini güncelle
     setNewData(filterUser(searchValue, data));
-  }, [searchValue,data])
+  }, [searchValue, data])
 
+  // sortName veya sortIsAZ değiştiğinde çalışan useEffect
   useEffect(() => {
-    console.log(sortName);
+    // changeSortData fonksiyonu ile newData'ı sırala ve sortData state'ini güncelle
     setSortData(changeSortData(newData, sortName, sortIsAZ))
-  }, )
+  }, [sortName, sortIsAZ, newData])
 
-  const handleSortClick = (item) => {
-    setSortName(item);
-    setSortIsAZ((prevSortIsAZ) => !prevSortIsAZ);
-  };
 
   return (
     <div className=" flex flex-col justify-between overflow-x-auto min-h-screen">
@@ -110,7 +57,7 @@ function CostumeTable({ data, setpageOfOpen, searchValue }) {
               <input className="accent-primary scale-105 w-4 h-4" type="checkbox" name="#" id="#" />
             </th>
             {thItemsData?.map((item, idx) => (
-              <th key={idx} onClick={() => handleSortClick(item) } className="p-4 text-xs font-medium uppercase text-svgColorDark text-left hover:cursor-pointer">
+              <th key={idx} onClick={() => handleSortClick(item, setSortName, setSortIsAZ)} className="p-4 text-xs font-medium uppercase text-svgColorDark text-left hover:cursor-pointer">
                 <span className="flex items-center gap-2">
                   <span>{item}</span>
                   <span className={`${sortName.toLocaleLowerCase() == item.toLocaleLowerCase() ? "block" : "hidden"} ${sortIsAZ && "rotate-180"}`}><BiDownArrow /></span>
@@ -128,7 +75,7 @@ function CostumeTable({ data, setpageOfOpen, searchValue }) {
       <div className="flex justify-between px-6 py-5">
         <div className="flex items-center">
           <IconBtn hrefLink='' icon={<IoIosArrowBack className="scale-125 stroke-[30]" />} />
-          <IconBtn hrefLink={''} icon={<IoIosArrowForward className="scale-125 stroke-[30]" />} />
+          <IconBtn hrefLink='' icon={<IoIosArrowForward className="scale-125 stroke-[30]" />} />
           <span>
             Showing <span>{dataShowingBetween}</span> of <span>{totalData}</span>
           </span>
