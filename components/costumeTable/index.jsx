@@ -14,8 +14,9 @@ import { BiDownArrow } from "react-icons/bi";
 //utils.js'den gelen fonksiyonlar
 import { filterUser, changeSortData, handleSortClick } from './utils'
 
-function CostumeTable({ data, setpageOfOpen, searchValue }) {
+function CostumeTable({ setpageOfOpen, searchValue }) {
   const [thItemsData, setThItemsData] = useState([]);
+  const [data, setData] = useState([]);
   const [newData, setNewData] = useState([]);
   const [sortName, setSortName] = useState("NAME");
   const [sortIsAZ, setSortIsAZ] = useState(true);
@@ -32,7 +33,7 @@ function CostumeTable({ data, setpageOfOpen, searchValue }) {
     // localStorage'dan thItemsData'yı al ve state'i güncelle
     setThItemsData(JSON.parse(localStorage.getItem("thItems")))
     // newData state'ini, gelen data prop'una eşitle
-    setNewData(data);
+    setData(JSON.parse(localStorage.getItem("usersData")));
   }, [])
 
   // searchValue veya data değiştiğinde çalışan useEffect
@@ -57,9 +58,11 @@ function CostumeTable({ data, setpageOfOpen, searchValue }) {
               <input className="accent-primary scale-105 w-4 h-4" type="checkbox" name="#" id="#" />
             </th>
             {thItemsData?.map((item, idx) => (
+              // handleSortClick fonksiyonu ile sortName ve sortIsAZ state'lerini güncelle
               <th key={idx} onClick={() => handleSortClick(item, setSortName, setSortIsAZ)} className="p-4 text-xs font-medium uppercase text-svgColorDark text-left hover:cursor-pointer">
                 <span className="flex items-center gap-2">
                   <span>{item}</span>
+                  {/* sortName ve item aynı ise block, değilse hidden, sortIsAZ true ise rotate-180, değilse rotate-0 */}
                   <span className={`${sortName.toLocaleLowerCase() == item.toLocaleLowerCase() ? "block" : "hidden"} ${sortIsAZ && "rotate-180"}`}><BiDownArrow /></span>
                 </span>
               </th>
@@ -67,6 +70,7 @@ function CostumeTable({ data, setpageOfOpen, searchValue }) {
           </tr>
         </thead>
         <tbody>
+          {/* sort datamızı slice ile page yapısına çevirdim ve map ile sortdata nın içindeki verileri tek tek gezindim */}
           {sortData?.slice(slicenumber - 20, slicenumber).map((user, idx) => (
             <UserRow user={user} key={idx} setpageOfOpen={setpageOfOpen} searchValue={searchValue} />
           ))}
