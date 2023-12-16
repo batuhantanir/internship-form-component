@@ -15,7 +15,7 @@ function ButtonContainer({ setPageOfOpen }) {
         costumeClass={
           "bg-primary text-white hover:bg-primaryDark w-full sm:w-fit"
         }
-        onClickEvent={setPageOfOpen}
+        onClickEvent={()=>setPageOfOpen("add-user")}
       />
     </div>
   );

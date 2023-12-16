@@ -7,11 +7,13 @@ import CostumeForm from "../costumeForm";
 
 //verileri değiştiren fonksiyon
 function changeUser(data, values, userId) {
+    console.log(data);
     //datanın içinde userid ye göre arama yapıp buluyoruz
     const changeData = data?.find((element) => element.id == userId);
     //bulduğumuz verileri eşleştirip eğer değişmiş bir veri var ise güncelliyoruz
     changeData.firstName != values.firstName && (changeData.firstName = values.firstName);
     changeData.lastName != values.lastName && (changeData.lastName = values.lastName);
+    changeData.name != values.name && (changeData.name = values.name);
     changeData.email != values.email && (changeData.email = values.email);
     changeData.phoneNumber != values.phoneNumber && (changeData.phoneNumber = values.phoneNumber);
     changeData.position != values.position && (changeData.position = values.position);
@@ -55,7 +57,7 @@ function EditUserFrom({ userId, data, setPageOfOpen }) {
                 // name key'ini firstName + lastName'e eşitler ve values'ya ekler 
                 const updatedValues = {
                     ...values,
-                    name: values.firstName + values.lastName,
+                    name: values.firstName + " " + values.lastName,
                 };
                 // changeUser fonksiyonunu çalıştırır
                 changeUser(data, updatedValues, userId);

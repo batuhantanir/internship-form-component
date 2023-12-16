@@ -33,21 +33,24 @@ function List() {
   const [data, setData] = useState([]);
   const [thItemsData, setThItemsData] = useState([]);
 
-  const thItems = ["NAME","POSITION","COUNTRY","STATUS",""];
-
+  const thItems = ["NAME", "POSITION", "COUNTRY", "STATUS",];
+  // localStorage'den gelen verileri al
+  let localThItems;
+  console.log(userId);
   // ComponentDidMount benzeri işlev, sayfa yüklendiğinde bir kez çalışır
   useEffect(() => {
+    (localStorage) && (localThItems = JSON.parse(localStorage.getItem("thItems")));
     // localStorage'de users var mı kontrolü
     const data = JSON.parse(localStorage.getItem("usersData"));
-    //localde çalıştığımız için thıtemsı localde oluşturmamız gerekiyor
-    localStorage.setItem("thItems", JSON.stringify(thItems));
+    //localde çalıştığımız thıtems yoksa için thıtemsı localde oluşturmamız gerekiyor
+    if (!localThItems) localStorage.setItem("thItems", JSON.stringify(thItems));
+    else setThItemsData(JSON.parse(localStorage.getItem("thItems")))
     //data varsa JSON verisini localStorage'e kaydetmemesi için bir if koşulu fakat all delete işlemi için kaldırıldı
     // if (!data) {
     //   // JSON verisini localStorage'e kaydetme
     //   localStorage.setItem("usersData", JSON.stringify(usersData));
     // }
     // localStorage'dan thItemsData'yı al ve state'i güncelle
-    setThItemsData(JSON.parse(localStorage.getItem("thItems")))
     // newData state'ini, gelen data prop'una eşitle
     setData(data);
   }, [])

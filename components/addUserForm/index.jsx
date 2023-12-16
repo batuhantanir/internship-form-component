@@ -60,7 +60,7 @@ function AddUserForm({ setPageOfOpen, data }) {
       // name key'ini firstName + lastName'e eşitler ve values'ya ekler 
       const updatedValues = {
         ...values,
-        name: values.firstName + values.lastName,
+        name: values.firstName + " " + values.lastName,
       };
       // addUser fonksiyonunu çalıştırır
       addUser(updatedValues, data);
