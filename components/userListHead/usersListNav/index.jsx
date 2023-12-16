@@ -10,11 +10,13 @@ function UsersListNav() {
     <div className="">
       <nav className="">
         <ol className="flex">
-          <li className="flex items-center text-center gap-2 pr-1 text-svgColorDark hover:text-black hover:cursor-pointer">
-            <span>
-              <HiHome className="scale-125"/>
-            </span>
-            <Link href="#" className="text-black">Home</Link>
+          <li>
+            <Link href='/' className="flex items-center text-center gap-2 pr-1 text-svgColorDark hover:text-black hover:cursor-pointer">
+              <span>
+                <HiHome className="scale-125" />
+              </span>
+              <span href="#" className="text-black">Home</span>
+            </Link>
           </li>
           <li className="flex items-center text-center gap-2 px-1">
             <span>
@@ -30,7 +32,7 @@ function UsersListNav() {
           </li>
         </ol>
       </nav>
-      <h1 className="font-semibold text-2xl my-4">All Users</h1>
+      <h1 className="font-semibold text-2xl my-4 whitespace-nowrap">All Users</h1>
     </div>
   );
 }

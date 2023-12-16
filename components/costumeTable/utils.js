@@ -3,7 +3,7 @@ function nameIsEqual(i, j, data, searchValue) {
     while ((j < searchValue.length)) {
         //searchValuenun j ince indeksi ile datanın i incisinin j incisini karşılaştırıyoruz
         // eğer eşit değiller ise return false oluyor
-        if (data[i].name[j]?.toUpperCase() != searchValue[j].toUpperCase()) {
+        if (data[i]?.name[j]?.toUpperCase() != searchValue[j].toUpperCase()) {
             return false;
         }
         j++;
@@ -21,8 +21,8 @@ export function filterUser(searchValue, data) {
     i = 0;
     //if sorgusunda searchValue değişkeninin boş olup olmadığı durumları kontrol ediyoruz
     if (searchValue != "") {
-        //while ile datanın içinde dönüyoruz
-        while (i < data.length) {
+        //while ile datanın içinde dönüyoruz  '?' ile undefined durumunu kontrol ediyoruz
+        while (i < data?.length) {
             j = 0;
             //i, j, data, searchValue değişkenlerini nameIsEqual fonksiyonuna gönderiyoruz ve
             // dönen boolean değere göre tempDataya push edip etmiyeceğimizi belirtiyoruz
@@ -42,7 +42,7 @@ export function changeSortData(newData, sortName, sortIsAZ) {
     const sortOrder = sortIsAZ ? 1 : -1;
 
     // Veri dizisini sıralama işlemi
-    newData.sort((a, b) => {
+    newData?.sort((a, b) => {
         // Karşılaştırılacak değerleri büyük harfe çeviriyoruz, ancak önce değerin var olup olmadığını kontrol ediyoruz
         const nameA = a[sortName] ? a[sortName].toUpperCase() : '';
         const nameB = b[sortName] ? b[sortName].toUpperCase() : '';

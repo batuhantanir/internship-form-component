@@ -14,27 +14,20 @@ import { BiDownArrow } from "react-icons/bi";
 //utils.js'den gelen fonksiyonlar
 import { filterUser, changeSortData, handleSortClick } from './utils'
 
-function CostumeTable({ setpageOfOpen, searchValue }) {
-  const [thItemsData, setThItemsData] = useState([]);
-  const [data, setData] = useState([]);
+function CostumeTable({ setUserId, data, thItemsData, setPageOfOpen, searchValue }) {
   const [newData, setNewData] = useState([]);
   const [sortName, setSortName] = useState("NAME");
   const [sortIsAZ, setSortIsAZ] = useState(true);
   const [sortData, setSortData] = useState([]);
 
-  const dataShowingBetween = '1 - 20';
-
-  const totalData = '2290';
-
   const slicenumber = 20;
+  // dataShowingBetween değişkeni ile kaç veri arasında olduğumuzu gösteriyoruz
+  const dataShowingBetween = `${slicenumber - 20}-${slicenumber}`;
+  // totalData değişkeni ile toplam veri sayısını gösteriyoruz
+  const totalData = `${data?.length}`;
 
-  // ComponentDidMount benzeri işlev, sayfa yüklendiğinde bir kez çalışır
-  useEffect(() => {
-    // localStorage'dan thItemsData'yı al ve state'i güncelle
-    setThItemsData(JSON.parse(localStorage.getItem("thItems")))
-    // newData state'ini, gelen data prop'una eşitle
-    setData(JSON.parse(localStorage.getItem("usersData")));
-  }, [])
+
+
 
   // searchValue veya data değiştiğinde çalışan useEffect
   useEffect(() => {
@@ -48,7 +41,6 @@ function CostumeTable({ setpageOfOpen, searchValue }) {
     setSortData(changeSortData(newData, sortName, sortIsAZ))
   }, [sortName, sortIsAZ, newData])
 
-
   return (
     <div className=" flex flex-col justify-between overflow-x-auto min-h-screen">
       <table className="table-fixed min-w-full px-2">
@@ -57,9 +49,10 @@ function CostumeTable({ setpageOfOpen, searchValue }) {
             <th className="p-4">
               <input className="accent-primary scale-105 w-4 h-4" type="checkbox" name="#" id="#" />
             </th>
+            {/* localStorage'den gelen verileri map ile gezindim ve her bir veri için bir th oluşturdum */}
             {thItemsData?.map((item, idx) => (
               // handleSortClick fonksiyonu ile sortName ve sortIsAZ state'lerini güncelle
-              <th key={idx} onClick={() => handleSortClick(item, setSortName, setSortIsAZ)} className="p-4 text-xs font-medium uppercase text-svgColorDark text-left hover:cursor-pointer">
+              <th key={idx} onClick={() => data && data != [] && handleSortClick(item, setSortName, setSortIsAZ)} className="p-4 text-xs font-medium uppercase text-svgColorDark text-left hover:cursor-pointer aria-disabled:hover:cursor-not-allowed" aria-disabled={!data || data?.length == 0}>
                 <span className="flex items-center gap-2">
                   <span>{item}</span>
                   {/* sortName ve item aynı ise block, değilse hidden, sortIsAZ true ise rotate-180, değilse rotate-0 */}
@@ -70,27 +63,35 @@ function CostumeTable({ setpageOfOpen, searchValue }) {
           </tr>
         </thead>
         <tbody>
+          {/*  datanın olmaması durumunda gösterilecek error  */}
+          { data == null || data?.length == 0 ?
+            <tr className="text-center">
+              <td className="py-5 text-danger" colSpan="8">there is no data to show</td>
+            </tr>
+            : 
+            // data sayısının sıfır olması durumunda gösterilecek veriler
+            sortData?.length == 0 ?
+              <tr className="text-center">
+                <td className="py-5 text-danger" colSpan="8">Veri bulunamadı</td>
+              </tr>
+              :
+              // datanın olması durumunda gösterilecek veriler
+              sortData?.slice(slicenumber - 20, slicenumber).map((user, idx) => (
+                <UserRow setUserId={setUserId} user={user} key={idx} setPageOfOpen={setPageOfOpen} searchValue={searchValue} />
+              ))}
           {/* sort datamızı slice ile page yapısına çevirdim ve map ile sortdata nın içindeki verileri tek tek gezindim */}
-          {sortData?.slice(slicenumber - 20, slicenumber).map((user, idx) => (
-            <UserRow user={user} key={idx} setpageOfOpen={setpageOfOpen} searchValue={searchValue} />
-          ))}
+
         </tbody>
       </table>
       <div className="flex justify-between px-6 py-5">
         <div className="flex items-center">
+          {/* bir sonraki veri page ine geçmek için ileri geri tuşlar */}
           <IconBtn hrefLink='' icon={<IoIosArrowBack className="scale-125 stroke-[30]" />} />
           <IconBtn hrefLink='' icon={<IoIosArrowForward className="scale-125 stroke-[30]" />} />
+          {/* kaçıncı verileri gördüğümüz ver kaç veri olduğunun gösterilmesi */}
           <span>
             Showing <span>{dataShowingBetween}</span> of <span>{totalData}</span>
           </span>
-        </div>
-        <div className="flex gap-4">
-          <Buttons title={"Previous"} icon={<IoIosArrowBack className="stroke-[15] scale-95" />} costumeClass={
-            "bg-primary text-white hover:bg-primaryDark w-[50%] sm:w-fit"
-          } />
-          <Buttons title={"Next"} icon={<IoIosArrowForward className="stroke-[15] scale-95" />} costumeClass={
-            "bg-primary text-white hover:bg-primaryDark w-[50%] sm:w-fit"
-          } />
         </div>
       </div>
     </div>

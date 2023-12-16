@@ -1,11 +1,12 @@
 import React from 'react'
-import Link from "next/link";
 
-function IconBtn({ onClickEvent, icon,openPageKey }) {
+function IconBtn({ onClickEvent, icon, costumeClassName, costumDisabled }) {
   return (
+    //alınan verilere göre bir buton oluşturuldu
     <button
-      onClick={() => (onClickEvent && onClickEvent(openPageKey))}
-      className="hover:bg-hoverBgColor p-2 rounded hover:text-black text-svgColorDark"
+      onClick={onClickEvent && onClickEvent}
+      className={`hover:bg-hoverBgColor p-2 rounded hover:text-black text-svgColorDark ${costumeClassName ? costumeClassName : ""}`}
+      disabled={costumDisabled}
     >
       {icon}
     </button>

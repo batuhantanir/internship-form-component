@@ -9,7 +9,7 @@ function UsersListHead(props) {
       <UsersListNav />
       <div className="flex justify-between">
         <UsersInput {...props} />
-        <ButtonContainer setpageOfOpen={props.setpageOfOpen} />
+        <ButtonContainer setPageOfOpen={props.setPageOfOpen} />
       </div>
     </div>
   );
