@@ -36,7 +36,6 @@ function List() {
   const thItems = ["NAME", "POSITION", "COUNTRY", "STATUS",];
   // localStorage'den gelen verileri al
   let localThItems;
-  console.log(userId);
   // ComponentDidMount benzeri işlev, sayfa yüklendiğinde bir kez çalışır
   useEffect(() => {
     (localStorage) && (localThItems = JSON.parse(localStorage.getItem("thItems")));
