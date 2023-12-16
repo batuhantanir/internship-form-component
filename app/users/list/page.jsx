@@ -33,11 +33,14 @@ function List() {
   const [data, setData] = useState([]);
   const [thItemsData, setThItemsData] = useState([]);
 
+  const thItems = ["NAME","POSITION","COUNTRY","STATUS",""];
+
   // ComponentDidMount benzeri işlev, sayfa yüklendiğinde bir kez çalışır
   useEffect(() => {
     // localStorage'de users var mı kontrolü
     const data = JSON.parse(localStorage.getItem("usersData"));
-
+    //localde çalıştığımız için thıtemsı localde oluşturmamız gerekiyor
+    localStorage.setItem("thItems", JSON.stringify(thItems));
     //data varsa JSON verisini localStorage'e kaydetmemesi için bir if koşulu fakat all delete işlemi için kaldırıldı
     // if (!data) {
     //   // JSON verisini localStorage'e kaydetme
